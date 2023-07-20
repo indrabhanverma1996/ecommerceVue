@@ -1,0 +1,583 @@
+import Vue from "vue";
+import VueRouter from "vue-router";
+
+import PublicLayout from "./layouts/Public.vue";
+import DashboardLayout from "./layouts/Dashboard.vue";
+
+import Welcome from "./views/Welcome.vue";
+import Login from "./views/Login.vue";
+import ForgetPassword from "./views/password/Email.vue";
+
+// import Register from "./views/Register.vue";
+import Dashboard from "./views/Dashboard.vue";
+import Category from "./views/category/List.vue";
+import CategoryAdd from "./views/category/Add.vue";
+import CategoryEdit from "./views/category/Edit.vue";
+
+import Question from "./views/questions/List.vue";
+import QuestionAdd from "./views/questions/Add.vue";
+import QuestionEdit from "./views/questions/Edit.vue";
+import QuestionShow from "./views/questions/Show.vue";
+
+import Test from "./views/test/List.vue";
+import TestAdd from "./views/test/Add.vue";
+import TestEdit from "./views/test/Edit.vue";
+import TestShow from "./views/test/Show.vue";
+import TestQuestion from "./views/test/Question.vue";
+import TestUserField from "./views/test/InputFields.vue";
+
+import PerformanceAdd from "./views/performance/Add.vue";
+import PerformanceShow from "./views/performance/Show.vue";
+
+import AssignList from "./views/assign/List.vue";
+import AssignAdd from "./views/assign/Add.vue";
+import AssignSend from "./views/assign/Send.vue";
+import AssignSendOne from "./views/assign/SendOne.vue";
+import AssignEditOne from "./views/assign/EditOne.vue";
+
+import OnlineTest from "./views/front/Test.vue";
+import OnlineTestPreview from "./views/preview/TestPerview.vue";
+
+import ReportList from "./views/report/Index.vue";
+import ReportShow from "./views/report/Show.vue";
+import ReportShowCandidate from "./views/report/ShowCandidate.vue";
+import PageNotFound from "./views/PageNotFound.vue";
+
+import Profile from './views/Profile.vue';
+
+import Users from  './views/users/List.vue';
+
+import Roles from  './views/role/List.vue';
+import RoleCreate from  './views/role/Create.vue';
+import RoleEdit from  './views/role/Edit.vue';
+
+import Permissions from  './views/permissions/List.vue';
+import PermissionCreate from  './views/permissions/Create.vue';
+import PermissionEdit from  './views/permissions/Edit.vue';
+import PermissionShow from  './views/permissions/Show.vue';
+// import Roles from  './views/users/RolesList.vue';
+import UsersAdd from "./views/users/Add.vue";
+import UsersEdit from "./views/users/Edit.vue";
+import UsersShow from "./views/users/Show.vue";
+
+Vue.use(VueRouter);
+
+const routes = [
+  {
+    path: '/profile/:id/',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: Profile,
+        name: 'Profile',
+        meta: { title: 'User Profile | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: Dashboard,
+        name: 'Welcome',
+        meta: { title: 'Dashboard | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/login',
+    component: PublicLayout,
+    children: [
+      {
+        path: '',
+        component: Login,
+        name: 'Login',
+        meta: { title: 'Login | RPM', guestOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/forget-password',
+    component: PublicLayout,
+    children: [
+      {
+        path: '',
+        component: ForgetPassword,
+        name: 'ForgetPassword',
+        meta: { title: 'Reset Password | RPM', guestOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/dashboard',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: Dashboard,
+        name: 'Dashboard',
+        meta: { title: 'Dashboard | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/users',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: Users,
+        name: 'Users',
+        meta : { title: 'Users | RPM', authOnly: true }
+      }
+    ],
+  },
+   {
+    path: "/users/add",
+    component: DashboardLayout,
+    children:[{
+      path: '',
+      component: UsersAdd,
+      name: 'UsersAdd',
+      meta: {title: "Add Users | RPM", authOnly:true}
+      }],
+  },
+  {
+   path: '/users/:id/edit',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: UsersEdit,
+        name: 'UsersEdit',
+        meta: { title: 'Edit Users - RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/users/:id/show',
+     component: DashboardLayout,
+     children: [
+       {
+         path: '',
+         component: UsersShow,
+         name: 'UsersShow',
+         meta: { title: 'Show Users - RPM', authOnly: true }
+       }
+     ],
+   },
+  {
+    path: '/roles',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: Roles,
+        name: 'Roles',
+        meta : { title: 'Roles | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/roles/create',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: RoleCreate,
+        name: 'create',
+        meta : { title: 'Create Role | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/roles/:id/edit',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: RoleEdit,
+        name: 'Edit',
+        meta : { title: ' Edit Role | RPM', authOnly: true }
+      }
+    ],
+  },
+  {    
+    path: '/permissions',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: Permissions,
+        name: 'Permissions',
+        meta : { title: 'Permissions | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/permissions/create',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: PermissionCreate,
+        name: 'permissionsCreate',
+        meta : { title: 'Create Permission | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/permissions/:id/edit',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: PermissionEdit,
+        name: 'PermissionsEdit',
+        meta : { title: ' Edit Permissions | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/permissions/:id/show',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: PermissionShow,
+        name: 'PermissionsShow',
+        meta : { title: ' Show Permissions | RPM', authOnly: true }
+      }
+    ],
+  },
+  // {
+  //   path: "/users/add",
+  //   component: DashboardLayout,
+  //   children:[{
+  //     path: '',
+  //     component: UsersAdd,
+  //     name: 'UsersAdd',
+  //     meta: {title: "Add Users | RPM", authOnly:true}
+  //     }],
+  // },
+  // {
+  //   path: '/users/:id/edit',
+  //   component: DashboardLayout,
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: UsersEdit,
+  //       name: 'UsersEdit',
+  //       meta: { title: 'Edit Users - RPM', authOnly: true }
+  //     }
+  //   ],
+  // },
+  {
+    path: '/question',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: Question,
+        name: 'Question',
+        meta: { title: 'Question | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/question/add',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: QuestionAdd,
+        name: 'QuestionAdd',
+        meta: { title: 'Add Question | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/question/:id/edit',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: QuestionEdit,
+        name: 'QuestionEdit',
+        meta: { title: 'Edit Question - RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/question/:id/show',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: QuestionShow,
+        name: 'QuestionShow',
+        meta: { title: 'Question - RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/test',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: Test,
+        name: 'Test',        
+        meta: { title: 'Test | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/test/add',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: TestAdd,
+        name: 'TestAdd',
+        meta: { title: 'Add Test | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/test/:id/edit',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: TestEdit,
+        name: 'TestEdit',
+        meta: { title: 'Edit Test | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/test/:id/preview',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: TestShow,
+        name: 'TestShow',
+        meta: { title: 'Preview Test - RPM' }
+      }
+    ],
+  },
+  {
+    path: '/test/:id/question',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: TestQuestion,
+        name: 'TestQuestion',
+        meta: { title: 'Test Questions | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/test/:id/fields',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: TestUserField,
+        name: 'TestUserField',
+        meta: { title: 'Registration Fields for Candidate - RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/performance/add',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: PerformanceAdd,
+        name: 'PerformanceAdd',
+        meta: { title: 'Add Performance | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/performance/:id/show',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: PerformanceShow,
+        name: 'PerformanceShow',
+        meta: { title: 'History Performance | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/assign',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: AssignList,
+        name: 'AssignList',
+        meta: { title: 'Assign Candidate to Test | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/assign/add',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: AssignAdd,
+        name: 'AssignAdd',
+        meta: { title: 'Set Assign Candidate to Test | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/assign/:id/send',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: AssignSend,
+        name: 'AssignSend',
+        meta: { title: 'Mail Send to Candidates | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/assign/:id/share',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: AssignSendOne,
+        name: 'AssignSendOne',
+        meta: { title: 'Mail Send to Candidates | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/assign/:id/edit',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: AssignEditOne,
+        name: 'AssignEditOne',
+        meta: { title: 'Edit Details - RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/online-test/:id/:user',
+    component: PublicLayout,
+    children: [
+      {
+        path: '',
+        component: OnlineTest,
+        name: 'OnlineTest',
+        meta: { title: 'Online Test | RPM' }
+      }
+    ],
+  },
+  {
+    path: '/online-test/:id/:user/preview',
+    component: PublicLayout,
+    children: [
+      {
+        path: '',
+        component: OnlineTestPreview,
+        name: 'OnlineTestPreview',
+        meta: { title: 'Online Test Preview | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/test/:id/report',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: ReportList,
+        name: 'ReportList',
+        meta: { title: 'Test Reports | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/test/report/:id/show',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        component: ReportShow,
+        name: 'ReportShow',
+        meta: { title: 'Report Show | RPM', authOnly: true }
+      }
+    ],
+  },
+  {
+    path: '/share-report',
+    component: PublicLayout,
+    children: [
+      {
+        path: '',
+        component: ReportShowCandidate,
+        name: 'ReportShowCandidate',
+        meta: { title: 'Candidate Report | RPM' }
+      }
+    ],
+  },
+  { path: "*", component: PageNotFound }
+];
+
+const router = new VueRouter({
+  mode: "history",
+  base: process.env.BASE_URL,
+  routes
+});
+
+function isLoggedIn() {
+  return localStorage.getItem("auth");
+}
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.authOnly)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (!isLoggedIn()) {
+      next({
+        path: "/login",
+        query: { redirect: to.fullPath }
+      });
+    } else {
+      next();
+    }
+  } else if (to.matched.some(record => record.meta.guestOnly)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (isLoggedIn()) {
+      next({
+        path: "/dashboard",
+        query: { redirect: to.fullPath }
+      });
+    } else {
+      next();
+    }
+  } else {
+    next(); // make sure to always call next()!
+  }
+});
+
+export default router;
